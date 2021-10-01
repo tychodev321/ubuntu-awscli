@@ -21,3 +21,7 @@ RUN curl ${AWSCLI_URL} -o "awscliv2.zip" \
     && rm  -rf awscliv2.zip awscliv2
 
 RUN aws --version
+
+USER 1001
+
+CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
