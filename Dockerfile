@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 # FROM redhat/ubi8/ubi-minimal:8.4
 
-LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
+LABEL maintainer=""
 
 ENV AWSCLI_VERSION=2.0.30
 ENV AWSCLI_URL=https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip
