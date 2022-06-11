@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.0.0
 
 LABEL maintainer=""
 
-ENV AWSCLI_VERSION=2.0.30
+ENV AWSCLI_VERSION=2.7.7
 ENV AWSCLI_URL=https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip
 
 # MicroDNF is recommended over YUM for Building Container Images
