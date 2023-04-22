@@ -1,1 +1,1 @@
-# ubi-awscli
+# ubuntu-awscli

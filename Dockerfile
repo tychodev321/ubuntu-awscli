@@ -1,18 +1,21 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.0.0
-# FROM redhat/ubi9/ubi-minimal:9.0.0
+FROM ubuntu:22.10
 
 LABEL maintainer=""
 
 ENV AWSCLI_VERSION=2.9.1
 ENV AWSCLI_URL=https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip
 
-# MicroDNF is recommended over YUM for Building Container Images
-# https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
-
-RUN microdnf update -y \
-    && microdnf install -y unzip \
-    && microdnf clean all \
-    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
+# Install Base Tools
+RUN apt update -y && apt upgrade -y \
+    && apt install -y unzip \
+    && apt install -y gzip \
+    && apt install -y tar \
+    && apt install -y wget \
+    && apt install -y curl \
+    && apt install -y git \
+    && apt install -y sudo \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 # Download and install AWS CLI
 RUN curl ${AWSCLI_URL} -o "awscliv2.zip" \ 
@@ -21,8 +24,7 @@ RUN curl ${AWSCLI_URL} -o "awscliv2.zip" \
     && rm  -rf awscliv2.zip awscliv2
 
 RUN echo "aws-cli version: $(aws --version)" \
-    && echo "unzip version: $(unzip -v | head -n 1)" \
-    && microdnf repolist
+    && echo "unzip version: $(unzip -v | head -n 1)"
 
 # USER 1001
 
